@@ -1,1 +1,69 @@
-<p>subjects works!</p>
+<h2>Modulo de Materias</h2>
+
+<div class="cards">
+  <div class="card">
+    <div class="card-header">
+      <h4>Crear nueva materia</h4>
+    </div>
+    <form (submit)="RegisterNewClass()" class="register_form">
+      <div class="form-group">
+        <label for="">Nombre de la materia</label>
+        <input
+          type="text"
+          name="master_name"
+          placeholder="Español..."
+          [(ngModel)]="subject.name"
+        />
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Guardar" />
+      </div>
+    </form>
+  </div>
+
+  <div class="table-container">
+    <table
+      datatable
+      id="masters-table"
+      class="row-border hover"
+      style="width: 100%"
+    >
+      <thead>
+        <tr>
+          <th>Materia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subject of subjects">
+          <td (click)="showClass(subject)">{{ subject.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="detailsShadow" *ngIf="showModal()"></div>
+<div class="masterDetails" *ngIf="showModal()">
+  <div class="masterInfo">
+    <div class="masterProfile">
+        <i class="fa-solid fa-people-group"></i>
+    </div>
+    <h3>Información la clase</h3>
+    <form class="details_form">
+      <div class="form-group">
+        <label for="">Nombre del usuario</label>
+        <input
+          type="text"
+          name="master_name"
+          placeholder="Mauricio Fernandez..."
+          [(ngModel)]="showData.name"
+        />
+      </div>
+    </form>
+  </div>
+  <div class="masterDetailsButtons">
+    <button class="update-button button" (click)="UpdateClass(this.showData._id)">Actualizar</button>
+    <button class="delete-button button" (click)="DeleteClass(this.showData._id)">Borrar</button>
+    <button class="cancel-button button" (click)="closeDetails()">Canelar</button>
+  </div>
+</div>

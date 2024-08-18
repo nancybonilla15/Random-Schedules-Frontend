@@ -1,1 +1,37 @@
-<router-outlet />
+<div class="dashboard-component">
+  <nav class="active" *ngIf="IsLoggedIn()">
+      <div class="menu-icon">
+          <i class="fa-solid fa-bars"></i>
+      </div>
+      <h4>HOla</h4>
+      <div class="menu-items">
+          <a routerLink="/app/dashboard" routerLinkActive="active" class="menu-item">
+              <i class="fa-solid fa-house"></i> Inicio
+          </a>
+
+          <a routerLink="/app/users" routerLinkActive="active" class="menu-item">
+            <i class="fa-solid fa-user-tie"></i> Usuarios
+          </a>
+
+          <a routerLink="/app/classes" routerLinkActive="active" class="menu-item">
+            <i class="fa-solid fa-people-group"></i> Clases
+          </a>
+
+          <a routerLink="/app/subjects" routerLinkActive="active" routerLinkActive="active" class="menu-item">
+            <i class="fa-solid fa-book"></i> Materias
+          </a>
+
+          <a href="#" routerLinkActive="active" class="menu-item">
+            <i class="fa-solid fa-calendar-days"></i> Horarios
+          </a>
+
+          <a href="#" routerLinkActive="active" (click)="SignOut()" class="menu-item">
+            <i class="fa-solid fa-right-from-bracket"></i> Salir
+          </a>
+      </div>
+  </nav>
+
+  <div class="main-container">
+      <router-outlet />
+  </div>
+</div>
