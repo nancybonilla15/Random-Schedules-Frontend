@@ -15,6 +15,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { ClassesComponent } from './components/admin/classes/classes.component';
 import { SubjectsComponent } from './components/admin/subjects/subjects.component';
 import { UsersComponent } from './components/admin/users/users.component';
+import { DashboardComponent } from './components/admin/operators/dashboard/dashboard.component';
+import { StudentsComponent } from './components/admin/students/students.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { UsersComponent } from './components/admin/users/users.component';
     MastersComponent,
     ClassesComponent,
     SubjectsComponent,
-    UsersComponent
+    UsersComponent,
+    DashboardComponent,
+    StudentsComponent
   ],
   imports: [
     BrowserModule,

@@ -26,4 +26,8 @@ export class MastersService {
   updateUser(userData: any){
     return this.http.post<any>(this.URL + '/update-user', userData)
   }
+
+  updateSubject(data: any){
+    return this.http.post<any>(this.URL + '/update-subjects', data)
+  }
 }

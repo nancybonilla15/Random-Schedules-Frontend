@@ -16,6 +16,8 @@ export class LoginComponent {
     password: '',
   };
 
+  brand: string = "../../../../assets/images/brand.png"
+
   constructor(
     private loginService: LoginService,
     private router: Router,

@@ -15,8 +15,7 @@ export class outsideGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean{
     const isAuthenticated = this.loginService.OutSide();
-    console.log('Guard say: ' + state.url)
-    if (isAuthenticated) {
+    if (!isAuthenticated) {
       this.router.navigate(['']);
 
     }

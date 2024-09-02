@@ -12,6 +12,7 @@ import { outsideGuard } from './guards/outside.guard';
 import { ClassesComponent } from './components/admin/classes/classes.component';
 import { SubjectsComponent } from './components/admin/subjects/subjects.component';
 import { UsersComponent } from './components/admin/users/users.component';
+import { StudentsComponent } from './components/admin/students/students.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,16 @@ const routes: Routes = [
   {
     path: 'app/subjects',
     component: SubjectsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'app/students',
+    component: StudentsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'app/masters',
+    component: MastersComponent,
     canActivate: [AuthGuard]
   }
 ];

@@ -1,156 +1,45 @@
-<h2>Modulo de Usuarios</h2>
+<h2>Modulo de Materias</h2>
 
 <div class="cards">
-  <div class="card">
+  <div class="card" *ngFor="let master of masters">
     <div class="card-header">
-      <h4>Crear nuevo usuario</h4>
-    </div>
-    <form (submit)="RegisterNewUser()" class="register_form">
-      <div class="form-group">
-        <label for="">Nombre del usuario</label>
-        <input
-          type="text"
-          name="master_name"
-          placeholder="Mauricio Fernandez..."
-          [(ngModel)]="master.name"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="">Identidad del usuario</label>
-        <input
-          type="text"
-          name="master_identity"
-          placeholder="0604-1990-01205..."
-          [(ngModel)]="master.identity"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="">Correo del usuario</label>
-        <input
-          type="email"
-          name="master_email"
-          placeholder="mauriciofer02@hotmail.com..."
-          [(ngModel)]="master.email"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="">Telefono del usuario</label>
-        <input
-          type="text"
-          name="master_phone"
-          placeholder="9856-8952..."
-          [(ngModel)]="master.phone"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="">Rol del usuario</label>
-        <select name="" id="" [(ngModel)]="master.rank" [ngModelOptions]="{standalone: true}">
-          <option value="0" disabled [selected]="true">
-            Seleccione un rol
-          </option>
-          <option [ngValue]="1">Administrador</option>
-          <option [ngValue]="2">Operador</option>
-          <option [ngValue]="3">Maestro</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <input type="submit" value="Guardar" />
-      </div>
-    </form>
-  </div>
-
-  <div class="table-container">
-    <table
-      datatable
-      id="masters-table"
-      class="row-border hover"
-      style="width: 100%"
-    >
-      <thead>
-        <tr>
-          <th>Usuario</th>
-          <th>Rol</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let master of masters">
-          <td (click)="showMaster(master)">{{ master.name }}</td>
-          <td (click)="showMaster(master)">
-            <span *ngIf="master.rank == 1">Administrador</span>
-            <span *ngIf="master.rank == 2">Operador</span>
-            <span *ngIf="master.rank == 3">Maestro</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<div class="detailsShadow" *ngIf="showModal()"></div>
-<div class="masterDetails" *ngIf="showModal()">
-  <div class="masterInfo">
-    <div class="masterProfile">
       <i class="fa-solid fa-user-tie"></i>
     </div>
-    <h3>Información del Usuario</h3>
-    <form class="details_form">
-      <div class="form-group">
-        <label for="">Nombre del usuario</label>
-        <input
-          type="text"
-          name="master_name"
-          placeholder="Mauricio Fernandez..."
-          [(ngModel)]="showData.name"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="">Identidad del usuario</label>
-        <input
-          type="text"
-          name="master_identity"
-          placeholder="0604-1990-01205..."
-          [(ngModel)]="showData.identity"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="">Correo del usuario</label>
-        <input
-          type="email"
-          name="master_email"
-          placeholder="mauriciofer02@hotmail.com..."
-          [(ngModel)]="showData.email"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="">Telefono del usuario</label>
-        <input
-          type="text"
-          name="master_phone"
-          placeholder="9856-8952..."
-          [(ngModel)]="showData.phone"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="">Rol del usuario</label>
-        <select name="" id="" [(ngModel)]="showData.rank" [ngModelOptions]="{standalone: true}">
-          <option [ngValue]="1" [selected]="showData.rank == 1">Administrador</option>
-          <option [ngValue]="2" [selected]="showData.rank == 2">Operador</option>
-          <option [ngValue]="3" [selected]="showData.rank == 3">Maestro</option>
-        </select>
-      </div>
-    </form>
+    <h2>Información del Maestro</h2>
+    <p>Nombre: {{ master.name }}</p>
+    <p>Identidad: {{ master.identity }}</p>
+    <p *ngIf="master.subjects.length == 0" class="warning-text">*No tiene materias asignadas todavia</p>
+    <div *ngIf="master.subjects.length > 0" class="card-subjects">
+      <br>
+      <h4>Materias cargadas</h4>
+      <p> <i class="fa-solid fa-right-long"></i> &nbsp;{{ master.subjects.length }} &nbsp;<i class="fa-solid fa-left-long"></i></p>
+    </div>
+    <div class="details-button" (click)="showMaster(master)">Ver detalles</div>
   </div>
-  <div class="masterDetailsButtons">
-    <button class="update-button button" (click)="UpdateUser(this.showData._id)">Actualizar</button>
-    <button class="delete-button button" (click)="DeleteUser(this.showData._id)">Borrar</button>
-    <button class="cancel-button button" (click)="closeDetails()">Canelar</button>
+</div>
+
+<div class="detailsShadow" *ngIf="showModal()"></div>
+<div class="masterDetails" *ngIf="showModal()">
+  <div class="masterDetails-header">
+    <div class="logotype">
+      <i class="fa-solid fa-user-tie"></i>
+    </div>
+    <div class="master-information">
+      <p>Nombre: {{ showData.name }}</p>
+      <p>Identidad: {{ showData.identity }}</p>
+      <p>Correo: {{ showData.email }}</p>
+      <p>Telefono: {{ showData.phone }}</p>
+    </div>
+    <div class="operation-buttons">
+      <button class="update-button button" (click)="UpdateSubjects(this.showData._id)">Actualizar</button>
+      <button class="cancel-button button" (click)="closeDetails()">Canelar</button>
+    </div>
+  </div>
+  <hr>
+  <h2>Cuadro de Materias</h2>
+  <div class="subjects-container">
+    <div class="subject-item" (click)="appendSubject(subject._id)" [ngClass]="{'active': masterSubjects.includes(subject._id) }" *ngFor="let subject of subjects">
+      {{ subject.name }}
+    </div>
   </div>
 </div>

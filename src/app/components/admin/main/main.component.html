@@ -1,64 +1,200 @@
-<div class="cards">
-    <div class="card">
-        Information
+<div class="dashboard-container" *ngIf="IsAdmin()">
+    <div class="cards">
+        <div class="card">
+            Information
+        </div>
+        <div class="card">
+            Information
+        </div>
+        <div class="card">
+            Information
+        </div>
     </div>
-    <div class="card">
-        Information
-    </div>
-    <div class="card">
-        Information
+    
+    <div class="table-container">
+        <h3>Clases</h3>
+        <table datatable class="row-border hover" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Clase</th>
+                    <th>Maestro</th>
+                    <th>Alumnos</th>
+                    <th>Hora Clase</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+            </tbody>
+        </table>
+        
     </div>
 </div>
 
-<div class="table-container">
-    <h3>Clases</h3>
-    <table datatable class="row-border hover" style="width: 100%;">
-        <thead>
-            <tr>
-                <th>Clase</th>
-                <th>Maestro</th>
-                <th>Alumnos</th>
-                <th>Hora Clase</th>
-            </tr>
-        </thead>
-        <tbody>
-           <tr>
-            <td>Español</td>
-            <td>Dionicio Herrera</td>
-            <td>35</td>
-            <td>11:00 Am</td>
-           </tr>
-           <tr>
-            <td>Español</td>
-            <td>Dionicio Herrera</td>
-            <td>35</td>
-            <td>11:00 Am</td>
-           </tr>
-           <tr>
-            <td>Español</td>
-            <td>Dionicio Herrera</td>
-            <td>35</td>
-            <td>11:00 Am</td>
-           </tr>
-           <tr>
-            <td>Español</td>
-            <td>Dionicio Herrera</td>
-            <td>35</td>
-            <td>11:00 Am</td>
-           </tr>
-           <tr>
-            <td>Español</td>
-            <td>Dionicio Herrera</td>
-            <td>35</td>
-            <td>11:00 Am</td>
-           </tr>
-           <tr>
-            <td>Español</td>
-            <td>Dionicio Herrera</td>
-            <td>35</td>
-            <td>11:00 Am</td>
-           </tr>
-        </tbody>
-    </table>
+<div class="dashboard-container" *ngIf="IsOperator()">
+    <div class="dashboard-section">
+        <h2>Catedraticos sin materias asignadas</h2>
+        <br>
+        <div class="dashboard-section-item">
+            <div class="table-container">
+                <table
+                  datatable
+                  id="masters-table"
+                  class="row-border hover"
+                  style="width: 100%"
+                >
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Identidad</th>
+                      <th>Telefono</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let master of mastersWithoutSubjests">
+                      <td>{{ master.name }}</td>
+                      <td>{{ master.identity }}</td>
+                      <td>{{ master.phone }}</td>
+                      <td><a href="#"><i class="fa-solid fa-eye"></i> Ver detalles</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2>Clases pendientes de configuracion</h2>
+        <br>
+        <div class="dashboard-section-item">
+            <div class="table-container">
+                <table
+                  datatable
+                  id="masters-table"
+                  class="row-border hover"
+                  style="width: 100%"
+                >
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Estudiantes Inscritos</th>
+                      <th>Observaciones</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let class of classesWithoutScheule">
+                      <td>{{ class.name }}</td>
+                      <td>{{ class.students }} estudiantes</td>
+                      <td>{{ class.description1 }} <br> {{ class.description2 }}</td>
+                      <td><a href="#"><i class="fa-solid fa-eye"></i> Ver detalles</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="dashboard-container" *ngIf="IsMaster()">
+    <div class="cards">
+        <div class="card">
+            Information
+        </div>
+        <div class="card">
+            Information
+        </div>
+        <div class="card">
+            Information
+        </div>
+    </div>
     
+    <div class="table-container">
+        <h3>Clases</h3>
+        <table datatable class="row-border hover" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Clase</th>
+                    <th>Maestro</th>
+                    <th>Alumnos</th>
+                    <th>Hora Clase</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+               <tr>
+                <td>Español</td>
+                <td>Dionicio Herrera</td>
+                <td>35</td>
+                <td>11:00 Am</td>
+               </tr>
+            </tbody>
+        </table>
+        
+    </div>
 </div>

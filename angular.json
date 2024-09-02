@@ -33,7 +33,7 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              }, "src/assets"
             ],
             "styles": ["src/styles.css"],
             "scripts": [],
@@ -91,7 +91,7 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              }, "src/assets"
             ],
             "styles": ["src/styles.css"],
             "scripts": []
@@ -99,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
